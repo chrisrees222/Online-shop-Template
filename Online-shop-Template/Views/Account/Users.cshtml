@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ApplicationUser>
+
+@{
+    ViewData["Title"] = "List of all users";
+}
+
+<div class="container">
+    <div class="text-light">
+        <p>
+            <h4>List of all users</h4>
+        </p>
+
+        <table class="table">
+            <thead>
+                <tr class="text-center text-light">
+                    <th>@Html.DisplayNameFor(model => model.FullName)</th>
+                    <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                    <th>@Html.DisplayNameFor(model => model.Email)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ApplicationUser item in Model)
+                {
+                <tr>
+                    <td class="align-middle text-light">
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    <td class="align-middle text-light">
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td class="align-middle text-light">
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                        <td class="align-middle text-light">
+                            <a class="btn btn-sm btn-primary" asp-action="Update" asp-route-id="@item.Id">
+                                Update
+                            </a>                            
+                        </td>                       
+                        <td>
+                            <form asp-action="DeleteUser" asp-route-id="@item.Id" method="post">
+                                <button type="submit" onclick="return DeleteU()" class="btn btn-sm btn-danger">
+                                    Delete
+                                </button>
+                            </form>
+                        </td>                    
+                </tr>
+                }
+                
+
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+
+<script>
+    function DeleteU() {
+        var result = confirm("Are You Sure You Want To Delete The User?")
+        if (result) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>
+

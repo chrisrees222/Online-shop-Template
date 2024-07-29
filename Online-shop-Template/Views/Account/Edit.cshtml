@@ -1,0 +1,60 @@
+﻿@model ApplicationUser
+
+@{
+    ViewData["Title"] = "User Profile";
+}
+
+<div class="container" style="max-width:600px;">
+    <h2 class="text-light">
+        @Model.FullName Profile.
+    </h2>
+<form asp-action="Edit">
+    <div class="form-group text-light">
+        <label asp-for="FullName" class="control-label"></label>
+        <input asp-for="FullName" class="form-control" />
+        <span asp-validation-for="FullName" class="text-danger"></span>
+    </div>
+    <div class="form-group text-light">
+        <label asp-for="UserName" class="control-label"></label>
+        <input asp-for="UserName" class="form-control" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+    <div class="form-group text-light">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+        <div style="margin-top:20px">
+            <h4 class="text-light">
+            Delivery Address where goods are to be sent.
+        </h4>
+    </div>
+    <div class="form-group text-light" style="margin-top:10px">
+        <label asp-for="Address" class="control-label"></label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+    <div class="form-group text-light">
+        <label asp-for="City" class="control-label"></label>
+        <input asp-for="City" class="form-control" />
+        <span asp-validation-for="City" class="text-danger"></span>
+    </div>
+    <div class="form-group text-light">
+        <label asp-for="State" class="control-label"></label>
+        <input asp-for="State" class="form-control" />
+        <span asp-validation-for="State" class="text-danger"></span>
+    </div>
+    <div class="form-group text-light">
+        <label asp-for="PostalCode" class="control-label"></label>
+        <input asp-for="PostalCode" class="form-control" />
+        <span asp-validation-for="PostalCode" class="text-danger"></span>
+    </div>
+    <!-- Add other fields here -->
+    <div>
+        <button type="submit" class="btn btn-primary text-light" style="margin-top:10px">Save</button>
+        </form>
+    <a class="btn btn-outline-danger" style="margin-top:10px; float:right;" asp-controller="Account" asp-action="DeleteConfirm"><i class="bi bi-person-minus"></i> Delete Account</a>
+        
+    </div>
+</div>

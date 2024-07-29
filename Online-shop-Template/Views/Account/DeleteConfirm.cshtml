@@ -1,0 +1,26 @@
+﻿<div class="container">
+    <div class="alert alert-danger text-center">
+        <h2>Are you sure you wish to delete your account?</h2>
+        <p>By clicking below, will erase all account details and orders.</p>
+        <hr />  
+        <div class="container" style="justify-content: center;align-items: center;">
+        <form asp-action="DeleteProfile" asp-route-id="" method="post">
+                <button type="submit" onclick="return DeleteU()" class="btn btn-sm btn-danger" style="margin-bottom:15px;"> Yes, Delete my account </button>
+        </form>
+            <a class="btn btn-outline-primary my-2 my-sm-0" style="margin-top:10px;" asp-controller="Account" asp-action="Edit"><i class="bi bi-person-minus"></i> Back</a>
+        </div>
+    </div>    
+</div>
+
+<script>
+    function DeleteU() {
+        var result = confirm("Are You Sure You Want To your account?")
+        if (result) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>
+
