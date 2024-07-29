@@ -16,3 +16,14 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+table {
+    border-collapse: collapse;
+    width: 90%;
+}
+
+th, td {
+    border: 1px solid white;
+    padding: 8px;
+    text-align: left;
+}

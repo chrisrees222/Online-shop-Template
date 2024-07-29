@@ -5,72 +5,67 @@
     ViewData["Title"] = "Sign up for a new account";
 }
 
-<div class="row text-light">
-    <div class="col-md-6 offset-3 text-light">
-        <p>
-            <h4>Sign up for a new account</h4>
-        </p>
 
-        @if (TempData["Error"] != null)
-        {
-            <div class="col-md-12 alert alert-danger text-light">
-                <span><b>Sorry!</b> - @TempData["Error"] </span>
-            </div>
-        }
-
-        <div class="row text-lighttext-light">
-            <div class="col-md-8 offset-2">
-                <form asp-action="Register">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-                    <div class="form-group">
-                        <label asp-for="FullName" class="control-label"></label>
-                        <input asp-for="FullName" class="form-control" />
-                        <span asp-validation-for="FullName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="EmailAddress" class="control-label"></label>
-                        <input asp-for="EmailAddress" class="form-control" />
-                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Password" class="control-label"></label>
-                        <input asp-for="Password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="ConfirmPassword" class="control-label"></label>
-                        <input asp-for="ConfirmPassword" class="form-control" />
-                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Address" class="control-label"></label>
-                        <input asp-for="Address" class="form-control" />
-                        <span asp-validation-for="Address" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="City" class="control-label"></label>
-                        <input asp-for="City" class="form-control" />
-                        <span asp-validation-for="City" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="State" class="control-label"></label>
-                        <input asp-for="State" class="form-control" />
-                        <span asp-validation-for="State" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="PostalCode" class="control-label"></label>
-                        <input asp-for="PostalCode" class="form-control" />
-                        <span asp-validation-for="PostalCode" class="text-danger"></span>
-                    </div>
-                    
-                    <div class="form-group" style="margin-top:10px">
-                        <input class="btn btn-outline-success float-right" type="submit" value="Sign up" />
-                        <a class="btn btn-outline-secondary" asp-controller="Product" asp-action="Index">Cancel</a>
-                    </div>
-
-                </form>
-            </div>
+<div class="container text-light" style="max-width:600px;">
+    
+    @if (TempData["Error"] != null)
+    {
+        <div class="col-md-12 alert alert-danger text-light">
+            <span><b>Sorry!</b> - @TempData["Error"] </span>
         </div>
-    </div>
+    }
+    <p>
+        <h4>Sign up for a new account</h4>
+    </p>
+        <form asp-action="Register">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label"></label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" class="control-label"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City" class="control-label"></label>
+                <input asp-for="City" class="form-control" />
+                <span asp-validation-for="City" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="State" class="control-label"></label>
+                <input asp-for="State" class="form-control" />
+                <span asp-validation-for="State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PostalCode" class="control-label"></label>
+                <input asp-for="PostalCode" class="form-control" />
+                <span asp-validation-for="PostalCode" class="text-danger"></span>
+            </div>
+                    
+            <div class="form-group" style="margin-top:10px">
+                <input class="btn btn-outline-success float-right" type="submit" value="Sign up" />
+                <a class="btn btn-outline-secondary" asp-controller="Product" asp-action="Index">Cancel</a>
+            </div>
+        </form>
 </div>
+       
+
