@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace Online_shop_Template.Models
 {
@@ -20,4 +21,5 @@ namespace Online_shop_Template.Models
         [ForeignKey("OrderId")]
         public Order Order { get; set; }
     }
+    
 }

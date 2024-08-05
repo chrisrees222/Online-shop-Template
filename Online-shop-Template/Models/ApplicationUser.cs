@@ -8,6 +8,7 @@ namespace Online_shop_Template.Models
         [Display(Name = "Full name")]
         public string FullName { get; set; }
 
+        public string? StripePayId { get; set; } //set as  ? nullable for registration
 
         [Display(Name = "First Line of Address")]
 

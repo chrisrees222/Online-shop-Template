@@ -1,4 +1,5 @@
 ﻿@using Online_shop_Template.Data.ViewModels;
+@using System.Web
 
 @model ShoppingCartVM
 
@@ -9,115 +10,81 @@
 
 
 <div class="text-center text-light">
-    <h2>You shopping cart summary</h2>
+    <h2>Your Basket summary</h2>
 </div>
-<div class=" text-light" style="width: 90%; overflow-x: auto;">
-    <table class="text-light">
+
+<table class="text-light" style="width: 100%; overflow-x: auto; color:white">
         
+        <tr>
+            <th>Selected amount</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Subtotal</th>
+            <th></th>
+        </tr>
+        
+        
+        @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
+        {
             <tr>
-                <th>Selected amount</th>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Subtotal</th>
-                <th></th>
-            </tr>
-        
-        
-            @foreach (var item in Model.ShoppingCart.ShoppingCartItems)
-            {
-                <tr>
-                    <td>@item.Amount</td>
-                    <td>@item.Product.Name</td>
-                    <td>@item.Product.Price.ToString("c")</td>
-                    <td>@((item.Amount * item.Product.Price).ToString("c"))</td>
-                    <td style="text-align: center;">
-                        <a class="text-danger" asp-controller="Orders" asp-action="RemoveItemFromShoppingCart"
-                            asp-route-id="@item.Product.Id">
-                            <i class="bi bi-cart-dash"></i>
-                        </a>
-                        |   |
-                        <a class="text-success" asp-controller="Orders" asp-action="AddItemToShoppingCart"
-                            asp-route-id="@item.Product.Id">
-                            <i class="bi bi-cart-plus"></i>
-                        </a>
-                    </td>
-                </tr>
-            }
-        
-        <tfoot>
-            <tr>
-                <td colspan="2"></td>
-                <td><b class="text-light">Total:</b></td>
-                <td class="text-light">
-                    @Model.ShoppingCartTotal.ToString("c")
+                <td>@item.Amount</td>
+                <td>@item.Product.Name</td>
+                <td>@item.Product.Price.ToString("c")</td>
+                <td>@((item.Amount * item.Product.Price).ToString("c"))</td>
+                <td style="text-align: center;">
+                    <a class="text-danger" asp-controller="Orders" asp-action="RemoveItemFromShoppingCart"
+                        asp-route-id="@item.Product.Id">
+                        <i class="bi bi-cart-dash"></i>
+                    </a>
+                    |   |
+                    <a class="text-success" asp-controller="Orders" asp-action="AddItemToShoppingCart"
+                        asp-route-id="@item.Product.Id">
+                        <i class="bi bi-cart-plus"></i>
+                    </a>
                 </td>
-                <td></td>
             </tr>
-        </tfoot>
-    </table>
+        }
+        
+    <tfoot>
+        <tr>
+            <td colspan="2"></td>
+            <td><b class="text-light">Total:</b></td>
+            <td class="text-light" >
+                @Model.ShoppingCartTotal.ToString("c")
+            </td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>
 
-    <div class="text-center">
-        <div class="btn-group">
-            @*<a class="btn btn-outline-primary" asp-action="CompleteOrder">
-            Complete order
-            </a>*@
-            <div id="paypal-btn"></div>
-            <span style="padding:5px"></span>
-            <a class="btn btn-outline-primary" asp-controller="Product" asp-action="Index">
-                Add more items
-            </a>
-        </div>
+<div class="text-center">
+    <div class="btn-group">
+        <a class="btn btn-outline-primary" asp-action="CompleteOrder">
+        Complete order
+        </a>
+        <span style="padding:5px"></span>
+        <a class="btn btn-success text-white" asp-controller="Product" asp-action="Index" style="border-radius:3px; margin:10px; padding:10px;">
+            <i class="bi bi-cart-plus"></i> Add more items
+        </a>
+
+        <span style="padding:5px"></span>
+
+        <form method="post" action="/Orders/CreateCheckoutSession">
+            <!-- Form fields -->
+            <div>
+                <input type="hidden" id="amount" name="amount" value="@Model.ShoppingCartTotal" />
+            </div>
+            <!-- Submit button -->
+            <button type="submit" id="amount" name="amount" class="btn btn-primary" style="padding:10px;margin:10px;">
+                Checkout
+                <i class="bi bi-apple"></i>
+                <i class="bi bi-google"></i>
+                <i class="bi bi-bi bi-credit-card-fill"></i>
+                <i class="bi bi-paypal"></i>
+            </button>
+        </form>
+        
     </div>
-
 </div>
 
-
-@section Scripts{
-
-    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
-
-    <script>
-
-        let _total = @Html.Raw(Model.ShoppingCartTotal);
-
-        paypal.Button.render({
-            //Configure environment
-            env: 'sandbox',
-            client: {
-                //Client id value from paypal developer. Sandbox mode for testing. https://developer.paypal.com/
-                sandbox: 'Abhm700DHkCcQNOx4mdd8pldg3tU_h5wpTTFViuGsZaW6qEYkuw5GUfNn7wex6nTMMbj4Qn25lsmjV0a'
-            },
-
-            //Customize button
-            locale: 'en_GB',
-            style: {
-                size: 'small',
-                color: 'gold',
-                shape: 'pill'
-            },
-            commit: true,
-
-            //Set up a payment
-            payment: function (data, actions) {
-                return actions.payment.create({
-                    transactions: [{
-                        amount: {
-                            total: _total,
-                            currency: 'GBP'
-                        }
-                    }]
-                });
-            },
-
-            //Execute the payment
-            onAuthorize: function (data, actions) {
-                return actions.payment.execute().then(function () {
-                    var url = '@Url.Action("CompleteOrder", "Orders", new { })';
-                    window.location.href = url;
-                });
-            }
-
-        }, '#paypal-btn')
-    </script>
-}
 

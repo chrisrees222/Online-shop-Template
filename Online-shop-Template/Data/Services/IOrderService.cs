@@ -4,7 +4,8 @@ namespace Online_shop_Template.Data.Services
 {
     public interface IOrderService
     {
-        Task StoreOrder(List<ShoppingCartItem> items, string userId, string EmalAddress);
+        Task StoreOrder(List<ShoppingCartItem> items, string userId, string EmalAddress, string checkOutId);
         Task<List<Order>> GetOrdersByUserIdAndRoleAsync(string userId, string userRole);
+        
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Online_shop_Template.Models;
 using Microsoft.EntityFrameworkCore;
+using Online_shop_Template.Migrations;
 
 namespace Online_shop_Template.Data.Services
 {
@@ -22,14 +23,17 @@ namespace Online_shop_Template.Data.Services
             }
 
             return orders;
-        }
+        }        
 
-        public async Task StoreOrder(List<ShoppingCartItem> items, string UserId, string userEmailAddress)
+        
+
+        public async Task StoreOrder(List<ShoppingCartItem> items, string UserId, string userEmailAddress, string checkOutId)
         {
             var order = new Order()
             {
                 UserId = UserId,
-                Email = userEmailAddress
+                Email = userEmailAddress,
+                CheckoutId = checkOutId
             };
             await _context.Orders.AddAsync(order);
             await _context.SaveChangesAsync();
@@ -47,5 +51,6 @@ namespace Online_shop_Template.Data.Services
             }
             await _context.SaveChangesAsync();
         }
+
     }
 }

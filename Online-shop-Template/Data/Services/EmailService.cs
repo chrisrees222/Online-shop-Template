@@ -2,6 +2,8 @@
 using MimeKit;
 using MailKit.Net.Smtp;
 using Azure.Security.KeyVault.Secrets;
+using Microsoft.Extensions.Options;
+using Online_shop_Template.Models;
 
 
 
@@ -9,13 +11,16 @@ namespace Online_shop_Template.Data.Services
 {
     public class EmailService
     {
-        private readonly IConfiguration _configuration ;
-        public EmailService(IConfiguration configuration) 
+        private readonly IConfiguration _configuration;
+        public EmailService(IConfiguration configuration, IOptions<StripeSettings> stripeSettings) 
         {
             _configuration = configuration;
+
         }
+
         public async Task SendRegistrationEmailAsync(string fromName, string toEmail)
         {
+            //For retrieving Appsettings.
             var configuration = new ConfigurationBuilder()
            .SetBasePath(Environment.CurrentDirectory)
            .AddJsonFile("appsettings.json")

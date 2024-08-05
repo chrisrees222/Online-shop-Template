@@ -6,6 +6,7 @@ using Online_shop_Template.Data.Services;
 using Online_shop_Template.Data;
 using Online_shop_Template.Models;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,6 +20,9 @@ builder.Services.AddSingleton<EmailService>();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("StripeSettings"));
+
 
 //Identity and Authorisation
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
@@ -52,6 +56,9 @@ app.UseSession();
 //Configure Authorisation and authentication
 app.UseAuthentication();
 app.UseAuthorization();
+
+
+app.UseEndpoints(endpoints => endpoints.MapControllers());
 
 //Change Programme/app.Mapcontroller route/ controller from home to the required action on first launch. Change launchSettings.Json / "launchUrl": "abc" to "" 
 app.MapControllerRoute(
