@@ -8,7 +8,7 @@
     <h4 class="text-light">List of all your orders</h4>
 </p>
 
-<table class="table text-light" style="max-width:700px">
+<table id="myTable" class="table text-light" style="max-width:90%;overflow-x:auto;font-weight:bold">
     <thead>
         <tr>
             <th>Order ID</th>
@@ -33,17 +33,16 @@
                     @foreach (var item in order.OrderItems)
                     {
                         <li>
-                            <div class="alert alert-info" role="alert">
-                                <span class="badge bg-success">@item.Amount</span> [@item.Price.ToString("c")] - @item.Product.Name
-                            </div>
+                            <span class="badge bg-primary">@item.Amount</span> [@item.Price.ToString("c")] - @item.Product.Name                           
                         </li>
                     }
                 </ul>
             </td>
             <td class="align-middle">
                 @order.OrderItems.Select(m => m.Product.Price * m.Amount).Sum().ToString("c")
-            </td>
-            <td class="align-middle">@order.OrderPaid</td>
+            </td>                   
+            <td class="align-middle" id="mytd">@order.OrderPaid</td>                
+                
             @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
             {
                 <td class="align-middle"> @order.User.FullName </td>
@@ -55,3 +54,29 @@
     </tbody>
 </table>
 
+
+<script>
+    // Get the table element
+    var table = document.getElementById("myTable");
+
+    // Loop through each row
+    for (var i = 0, row; row = table.rows[i]; i++) {
+        // Access the specific column (e.g., fourth column)
+        var cell = row.cells[3];
+
+        // Check the condition 
+        if (cell.innerText === "Status") {
+            cell.style.backgroundColor = "black";
+        }
+        else if (cell.innerText === "paid") {
+            cell.style.backgroundColor = "darkgreen";
+            cell.style.color = "black";
+            
+        }
+        else {
+            cell.style.backgroundColor = "darkred";
+            cell.style.Color = "white";
+            
+        }
+    }
+</script>

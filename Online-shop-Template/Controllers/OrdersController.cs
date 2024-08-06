@@ -9,10 +9,8 @@ using Stripe;
 using Stripe.Checkout;
 using Microsoft.Extensions.Options;
 using System.Diagnostics;
-using Org.BouncyCastle.Asn1.Cms;
-using MailKit;
 using Microsoft.AspNetCore.Identity;
-using Online_shop_Template.Migrations;
+
 
 
 namespace Online_shop_Template.Controllers

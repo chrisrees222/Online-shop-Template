@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Online_shop_Template.Data;
 
-
 namespace Online_shop_Template.Controllers
 {
     [Route("webhook")]
@@ -34,14 +33,20 @@ namespace Online_shop_Template.Controllers
             _context = context;
         }
 
-
-
         [HttpPost]
         [IgnoreAntiforgeryToken]
         public async Task<IActionResult> Index()
         {
             var json = await new StreamReader(HttpContext.Request.Body).ReadToEndAsync();
-            const string endpointSecret = "whsec_d3f09025c62bb60414633ada01dc58afbaaa39ecf439fcbb817bf153eaae2680";
+            //For retrieving Appsettings.
+            var configuration = new ConfigurationBuilder()
+           .SetBasePath(Environment.CurrentDirectory)
+           .AddJsonFile("appsettings.json")
+           .Build();
+
+            // Retrieve Azure Key Vault settings from appsettings.json
+            string endpointSecret = _configuration["StripeSettings:EndpointSecret"];
+            
             try
             {
                 var stripeEvent = EventUtility.ParseEvent(json);
