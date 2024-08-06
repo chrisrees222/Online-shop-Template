@@ -10,9 +10,9 @@ The stripe account is not through azure key vault as not configured on Azure yet
 Stripe is used for code simplicity as it automattically incorporates Google pay, Apple pay, link and many others if configured including Paypal.
 These can be inserted straight into appSettings.
 
-# If no account. When purchasing, select the "Complete Order" Button rather than checkout, this will carry out the actions of a dummy payment and show orders.
+If no account. When purchasing, select the "Complete Order" Button rather than checkout, this will carry out the actions of a dummy payment and show orders.
 
-#The required NuGet packages are:-
+# The required NuGet packages are:-
 Azure.Extensions.AspNetCore.Configuration.Secrets
 Azure.Identity
 Azure.Security.KeyVault.Secrets
@@ -30,11 +30,11 @@ Microsoft.SqlServer.SqlManagementObjects
 Mimekit
 Stripe.net
 
-#once entered, use data migrations in package manager.
+# Once entered, use data migrations in package manager.
 Add-Migration "name"
 Update-Database
 
-#for local stripe testing of the webhook.
+# for local stripe testing of the webhook.
 Install the stripe cli, for quick testing, download and extract to desktop.
 in command prompt, type cd Desktop.
 followed by "Stripe login" which will then ask you to press enter and display a confirm web page with a secret number.
@@ -51,7 +51,7 @@ When the webhook is succesful with response code 200, it looks for the user with
 to confirm payment for that particular user. 
 #This will show for both user and admin.
 
-#The database is seeded for instant use with an admin and a user role.
+# The database is seeded for instant use with an admin and a user role.
 Using Identity for users and admin. When a user registers, an email is sent, along with email sent when removing account.
 
 admin user:-
