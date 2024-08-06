@@ -13,22 +13,22 @@ These can be inserted straight into appSettings.
 If no account. When purchasing, select the "Complete Order" Button rather than checkout, this will carry out the actions of a dummy payment and show orders.
 
 # The required NuGet packages are:-
-Azure.Extensions.AspNetCore.Configuration.Secrets
-Azure.Identity
-Azure.Security.KeyVault.Secrets
-MailKit
-Microsoft.Aspnetcore.Identity.EntityFrameworkcore
-Microsoft.Data.SqlClient
-Microsoft.EntityFrameworkCore
-Microsoft.EntityFrameworkCore.sqlserver
-Microsoft.EntityFrameworkCore.tools
-Microsoft.Extensions.Configuration
-Microsoft.Extensions.Configuration.Azurekeyvault
-Microsoft.Extensions.Configuration.Binder
-Microsoft.Extensions.Configuration.Json
-Microsoft.SqlServer.SqlManagementObjects
-Mimekit
-Stripe.net
+Azure.Extensions.AspNetCore.Configuration.Secrets /
+Azure.Identity /
+Azure.Security.KeyVault.Secrets /
+MailKit /
+Microsoft.Aspnetcore.Identity.EntityFrameworkcore /
+Microsoft.Data.SqlClient /
+Microsoft.EntityFrameworkCore /
+Microsoft.EntityFrameworkCore.sqlserver /
+Microsoft.EntityFrameworkCore.tools /
+Microsoft.Extensions.Configuration /
+Microsoft.Extensions.Configuration.Azurekeyvault /
+Microsoft.Extensions.Configuration.Binder /
+Microsoft.Extensions.Configuration.Json /
+Microsoft.SqlServer.SqlManagementObjects /
+Mimekit /
+Stripe.net /
 
 # Once entered, use data migrations in package manager.
 Add-Migration "name"
